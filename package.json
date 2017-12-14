@@ -1,0 +1,22 @@
+{
+  "name": "estudosnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isrmicha/estudosNodeJs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isrmicha/estudosNodeJs/issues"
+  },
+  "homepage": "https://github.com/isrmicha/estudosNodeJs#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
