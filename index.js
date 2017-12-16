@@ -21,7 +21,7 @@ function pingarServidor (){
   console.log(`Pingando ${URLtoPing} para acordar em ${new Date()}`);
   rp(URLtoPing)
     .then(function (htmlString) {
-        console.log(htmlString);
+        console.log("Pingado com sucesso!");
     })
     .catch(function (err) {
       console.log(err);
