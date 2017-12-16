@@ -3,12 +3,33 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 var rp = require('request-promise');
 var URLtoPing = 'https://estudosnodejs.herokuapp.com/';
+// mysql://b6bacdc0cf0fab:a8153863@us-cdbr-iron-east-05.cleardb.net/heroku_aa33d39064ed0f2?reconnect=true
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'us-cdbr-iron-east-05.cleardb.net',
+  user     : 'b6bacdc0cf0fab',
+  password : 'a8153863',
+  database : 'heroku_aa33d39064ed0f2'
+});
+connection.connect();
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {
     res.render('public');
+  })
+  .get('/api/users', (req, res) => {
+  
+    connection.query('SELECT * FROM users', function (error, results, fields) {
+      if (error) console.log(error);
+      
+      res.send(results);
+    });
+   
+
+  
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
