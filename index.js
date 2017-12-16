@@ -1,6 +1,7 @@
-const express = require('express');
-const path = require('path');
-const PORT = process.env.PORT || 3000;
+var express = require('express');
+var path = require('path');
+var PORT = process.env.PORT || 3000;
+var cors = require('cors');
 var rp = require('request-promise');
 var URLtoPing = 'https://estudosnodejs.herokuapp.com/';
 // mysql://b6bacdc0cf0fab:a8153863@us-cdbr-iron-east-05.cleardb.net/heroku_aa33d39064ed0f2?reconnect=true
