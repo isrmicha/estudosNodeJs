@@ -24,9 +24,7 @@ express()
   
     pool.query('SELECT * FROM users', function (error, results, fields) {
       if (error) console.log(error);
-      
       res.send(results);
-      
     });
    
 
