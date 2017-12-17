@@ -33,7 +33,7 @@ express()
     var nome = req.body.nome;
     pool.query(`INSERT INTO users (nome) VALUES ('${nome}')`, function (error, results, fields) {
       if (error) console.log(error);
-      res.send('Inserido com sucesso!');
+      res.send(results);
     });
   })
   .put('/api/users/:id/:nome', (req, res) => {
@@ -41,14 +41,14 @@ express()
     var nome = req.params.nome;
     pool.query(`UPDATE users SET nome='${nome}' WHERE id='${id}'`, function (error, results, fields) {
       if (error) console.log(error);
-      res.send('Alterado com sucesso!');
+      res.send(results);
     });
   })
   .delete('/api/users/:id', (req, res) => {
     var id = req.params.id;
     pool.query(`DELETE FROM users WHERE nome='${id}'`, function (error, results, fields) {
       if (error) console.log(error);
-      res.send('Deletado com sucesso!');
+      res.send(results);
     });
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT } em ${novaDataAtual()}`));
