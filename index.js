@@ -46,7 +46,7 @@ express()
   })
   .delete('/api/users/:id', (req, res) => {
     var id = req.params.id;
-    pool.query(`DELETE FROM users WHERE nome=${id}`, function (error, results, fields) {
+    pool.query(`DELETE FROM users WHERE id=${id}`, function (error, results, fields) {
       if (error) console.log(error);
       res.send(results);
     });
