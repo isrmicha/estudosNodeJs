@@ -30,13 +30,11 @@ express()
     });
   })
   .post('/api/users', (req, res) => {
-    var nomePost = req.body.name;
-    console.log(nomePost);
-    res.send(nomePost);
-    // pool.query(`INSERT INTO users (nome) VALUES ('${nomePost}')`, function (error, results, fields) {
-    //   if (error) console.log(error);
-    //   res.send(results);
-    // });
+    var nomePost = req.body.nome;
+    pool.query(`INSERT INTO users (nome) VALUES ('${nomePost}')`, function (error, results, fields) {
+      if (error) console.log(error);
+      res.send('Inserido com sucesso!');
+    });
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT } em ${novaDataAtual()}`));
 pingarServidor();
