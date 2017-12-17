@@ -12,9 +12,12 @@ var pool = mysql.createPool({
   password: 'a8153863',
   database: 'heroku_aa33d39064ed0f2'
 });
+var bodyParser = require('body-parser');
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(cors())
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json())
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {
@@ -26,19 +29,31 @@ express()
       res.send(results);
     });
   })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  .post('/api/users', (req, res) => {
+    var nomePost = req.body.name;
+    console.log(nomePost);
+    res.send(nomePost);
+    // pool.query(`INSERT INTO users (nome) VALUES ('${nomePost}')`, function (error, results, fields) {
+    //   if (error) console.log(error);
+    //   res.send(results);
+    // });
+  })
+  .listen(PORT, () => console.log(`Listening on ${ PORT } em ${novaDataAtual()}`));
 pingarServidor();
 setInterval(() => {
   pingarServidor();
 }, 29 * 60 * 1000);
 
 function pingarServidor() {
-  console.log(`Pingando ${URLtoPing} para acordar em ${new Date()}`);
   rp(URLtoPing)
     .then(function (htmlString) {
-      console.log("Pingado com sucesso!");
+      console.log(`Pingado com sucesso! em ${novaDataAtual()}`);
     })
     .catch(function (err) {
       console.log(err);
     });
+}
+
+function novaDataAtual (){
+  return `${new Date().getFullYear()}-${(new Date().getMonth()+1)}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
 }
