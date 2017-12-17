@@ -39,14 +39,14 @@ express()
   .put('/api/users/:id/:nome', (req, res) => {
     var id = req.params.id;
     var nome = req.params.nome;
-    pool.query(`UPDATE users SET nome='${nome}' WHERE id='${id}'`, function (error, results, fields) {
+    pool.query(`UPDATE users SET nome='${nome}' WHERE id=${id}`, function (error, results, fields) {
       if (error) console.log(error);
       res.send(results);
     });
   })
   .delete('/api/users/:id', (req, res) => {
     var id = req.params.id;
-    pool.query(`DELETE FROM users WHERE nome='${id}'`, function (error, results, fields) {
+    pool.query(`DELETE FROM users WHERE nome=${id}`, function (error, results, fields) {
       if (error) console.log(error);
       res.send(results);
     });
