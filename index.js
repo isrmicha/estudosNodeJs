@@ -29,6 +29,13 @@ express()
       res.send(results);
     });
   })
+  .get('/api/users/:id', (req, res) => {
+    var id = req.params.id;
+    pool.query(`SELECT * FROM users WHERE id=${id}`, function (error, results, fields) {
+      if (error) console.log(error);
+      res.send(results);
+    });
+  })
   .post('/api/users', (req, res) => {
     var nome = req.body.nome;
     pool.query(`INSERT INTO users (nome) VALUES ('${nome}')`, function (error, results, fields) {
