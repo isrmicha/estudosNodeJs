@@ -62,7 +62,7 @@ express()
 pingarServidor();
 setInterval(() => {
   pingarServidor();
-}, 29 * 60 * 1000);
+}, 15 * 60 * 1000);
 
 function pingarServidor() {
   rp(URLtoPing)
